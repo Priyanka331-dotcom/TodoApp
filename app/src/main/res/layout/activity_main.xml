@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E8F5E9">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My To-Do List"
+        android:textColor="#1B5E20"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"/>
+
+    <!-- RecyclerView for tasks -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTasks"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tvTitle"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"/>
+
+    <!-- Add Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Add Task"
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"/>
+
+</RelativeLayout>

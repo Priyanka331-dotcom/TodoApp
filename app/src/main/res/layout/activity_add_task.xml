@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#FFFDE7">
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add New Task"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#1B5E20"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="30dp"/>
+
+    <!-- Input Field -->
+    <EditText
+        android:id="@+id/etTask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your task"
+        android:textColorHint="#757575"
+        android:textColor="#212121"
+        android:padding="12dp"/>
+
+    <!-- Save Button -->
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Task"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"/>
+
+</LinearLayout>
