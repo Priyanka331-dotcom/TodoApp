@@ -53,6 +53,16 @@ class TaskAdapter(private val taskList: ArrayList<Task>,
         }
 
         holder.itemView.setOnClickListener {
+
+            val context = holder.itemView.context
+
+            val intent = Intent(context, SubTaskActivity::class.java)
+            intent.putExtra("position", position)
+
+            context.startActivity(intent)
+        }
+
+        holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, SubTaskActivity::class.java)
             intent.putExtra("position", position)
             holder.itemView.context.startActivity(intent)

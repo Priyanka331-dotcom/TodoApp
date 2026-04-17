@@ -1,25 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="16dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="#EDE7F6">
 
+    <!-- Input box -->
     <EditText
         android:id="@+id/etSubTask"
-        android:hint="Enter subtask"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:hint="Enter subtask" />
 
+    <!-- Add button -->
     <Button
         android:id="@+id/btnAddSubTask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Add Subtask"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:textColor="#FFFFFF"
+        android:padding="12dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_bg"/>
 
-    <ListView
-        android:id="@+id/listSubTasks"
+    <!-- RecyclerView like main screen -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewSubTasks"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
+
 </LinearLayout>

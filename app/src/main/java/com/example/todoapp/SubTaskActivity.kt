@@ -3,6 +3,8 @@ package com.example.todoapp
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -10,11 +12,11 @@ class SubTaskActivity : AppCompatActivity() {
 
     private lateinit var etSubTask: EditText
     private lateinit var btnAddSubTask: Button
-    private lateinit var listView: ListView
+    private lateinit var recyclerView: RecyclerView
 
     private lateinit var taskList: ArrayList<Task>
     private lateinit var subTaskList: ArrayList<String>
-    private lateinit var adapter: ArrayAdapter<String>
+    private lateinit var adapter: SubTaskAdapter    // ✅ FIXED
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +24,7 @@ class SubTaskActivity : AppCompatActivity() {
 
         etSubTask = findViewById(R.id.etSubTask)
         btnAddSubTask = findViewById(R.id.btnAddSubTask)
-        listView = findViewById(R.id.listSubTasks)
+        recyclerView = findViewById(R.id.recyclerViewSubTasks)
 
         val position = intent.getIntExtra("position", -1)
 
@@ -32,13 +34,19 @@ class SubTaskActivity : AppCompatActivity() {
         val json = sharedPref.getString("taskList", null)
         val type = object : TypeToken<ArrayList<Task>>() {}.type
 
-        taskList = gson.fromJson(json, type)
+        taskList = if (json != null) {
+            gson.fromJson(json, type)
+        } else {
+            ArrayList()
+        }
 
         val currentTask = taskList[position]
         subTaskList = currentTask.subTasks
 
-        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, subTaskList)
-        listView.adapter = adapter
+        // ✅ Setup RecyclerView AFTER data is ready
+        adapter = SubTaskAdapter(subTaskList)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
 
         btnAddSubTask.setOnClickListener {
             val subTask = etSubTask.text.toString()
@@ -47,7 +55,6 @@ class SubTaskActivity : AppCompatActivity() {
                 subTaskList.add(subTask)
                 adapter.notifyDataSetChanged()
 
-                // Save updated list
                 val updatedJson = gson.toJson(taskList)
                 sharedPref.edit().putString("taskList", updatedJson).apply()
 
