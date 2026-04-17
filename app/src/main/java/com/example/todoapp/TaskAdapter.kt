@@ -52,6 +52,12 @@ class TaskAdapter(private val taskList: ArrayList<Task>,
             }
         }
 
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, SubTaskActivity::class.java)
+            intent.putExtra("position", position)
+            holder.itemView.context.startActivity(intent)
+        }
+
         // ✅ Long press menu
         holder.itemView.setOnLongClickListener {
 
